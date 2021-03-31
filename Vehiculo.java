@@ -17,5 +17,16 @@ public class Vehiculo
   public Vehiculo(String p, String m, String c){
    this(p,m,c,30000000);
   }
-  
+  public String getPlaca(){
+      return this.placa;
+    }
+  public String getMarca(){
+      return this.marca;
+    }
+  public String getColor(){
+      return this.color;
+    }
+  public int getValorComercial(){
+      return this.valorComercial;
+    }
 }
