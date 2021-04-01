@@ -13,6 +13,7 @@ public class Vehiculo
    this.marca = m;
    this.color = c;
    this.valorComercial = v;
+   cantidad++;
   }
   public Vehiculo(String p, String m, String c){
    this(p,m,c,30000000);
@@ -40,6 +41,23 @@ public class Vehiculo
     }
   public int getValorComercial(){
       return this.valorComercial;
+    }
+  public String toString(){
+    String info = "Marca: "+this.marca+" Placa: "+this.placa+" Color: "+" Precio: "this.valorComercial;
+    return info;
+  }
+    public String toStringVehiculo(){
+      String info_de_todos = "";
+      for(int i=0;i < vehiculos.length;i++){
+          for(int j=0;j<vehiculos[i].length;j++){
+             if(vehiculos[i][j]!= null) {
+                 info_de_todos += vehiculos[i][j].toString()"\n";
+             }
+          }
+      }
+  }
+    public static int cantidadVehiculos(){
+      return cantidad;
     }
 }
 
