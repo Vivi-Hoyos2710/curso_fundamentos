@@ -1,33 +1,46 @@
-
-/**
- * Write a description of class Sensor here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Sensor
-{
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Sensor
-     */
-    public Sensor()
-    {
-        // initialise instance variables
-        x = 0;
+public class Sensor{
+    public static Sensor[][] sensores;
+    private int estado;
+    public Sensor(){}
+    public Sensor(int estado){
+        this.estado= estado;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public void setEstado(int estado){
+        this.estado= estado;
+    }
+    public int getEstado(){
+        return this.estado;
+    }
+    public String toString(){
+        if(this.estado==1){
+            return "Ocupado";
+        }
+        else{
+            return "Libre";
+        }
+    }
+    public static String sensorLibre(){
+        String sensoresLibres="";
+        for(int i=0;i<sensores.length;i++){
+            for(int j=0;j<sensores[i].length;j++){
+                if(sensores[i][j]!=null){
+                    if(sensores[i][j].getEstado()==0){
+                        sensoresLibres+= "Piso: "+i+"Espacio: "+j+"\n";
+                    }
+                }
+            }
+        }
+        return sensoresLibres;
+    }
+    public static String sensoresEstado(){
+        String listaDeSensores="";
+        for(int i=0;i<sensores.length;i++){
+            for(int j=0;j<sensores[i].length;j++){
+                if(sensores[i][j]!=null){
+                    listaDeSensores+= "Piso: "+i+"Espacio "+j+"Estado "+sensores[i][j].toString()+"\n";
+                }
+            }
+        }
+        return listaDeSensores;
     }
 }
