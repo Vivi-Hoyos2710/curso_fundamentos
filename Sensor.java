@@ -25,7 +25,7 @@ public class Sensor{
             for(int j=0;j<sensores[i].length;j++){
                 if(sensores[i][j]!=null){
                     if(sensores[i][j].getEstado()==0){
-                        sensoresLibres+= "Piso: "+i+"Espacio: "+j+"\n";
+                        sensoresLibres+= "Piso: "+i+" Espacio: "+j+"\n";
                     }
                 }
             }

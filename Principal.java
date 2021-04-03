@@ -11,6 +11,11 @@ public class Principal {
         cantidadEspacios = entrada.nextInt();
         Vehiculo.vehiculos = new Vehiculo[cantidadPisos][cantidadEspacios];
         Sensor.sensores = new Sensor[cantidadPisos][cantidadEspacios];
+        for(int i=0; i<Sensor.sensores.length;i++){
+            for(int j=0; j<Sensor.sensores[i].length;j++){
+                Sensor.sensores[i][j]=new Sensor(0);
+            }
+        }
         Vehiculo.tamano = cantidadEspacios * cantidadPisos;
         System.out.println("Escriba una opcion: ");
         System.out.println("1. Sensores libres");
@@ -103,6 +108,7 @@ public class Principal {
             System.out.println("5. Muestra cantidad de vehiculos que se han parqueado");
             System.out.println("6. Verificar si el espacio está ocupado");
             System.out.println("7. Listar estado de sensores");
+            seleccion=entrada.nextInt();
         }
         System.out.println("Saliendo...");
 
