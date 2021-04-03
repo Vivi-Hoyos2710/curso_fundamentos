@@ -1,6 +1,6 @@
 public class Vehiculo {
   public static Vehiculo[][] vehiculos;
-  public static int tamaño;
+  public static int tamano;
   public static int cantidad = 0;
   private String placa;
   private String marca;
@@ -59,7 +59,7 @@ public class Vehiculo {
     return info;
   }
 
-  public String toStringVehiculos(){
+  public static String toStringVehiculos(){
       String info_de_todos = "";
       for(int i=0;i < vehiculos.length;i++){
           for(int j=0;j<vehiculos[i].length;j++){
