@@ -55,7 +55,7 @@ public class Vehiculo {
   }
 
   public String toString(){
-    String info = "Marca: "+this.marca+" Placa: "+this.placa+" Color: "+" Precio: "+this.valorComercial;
+    String info = "Marca: "+this.marca+" Placa: "+this.placa+" Color: "+this.color+" Precio: "+this.valorComercial;
     return info;
   }
 

@@ -18,12 +18,13 @@ public class Principal {
         }
         Vehiculo.tamano = cantidadEspacios * cantidadPisos;
         System.out.println("Escriba una opcion: ");
+        System.out.println("0. Salir del sistema");
         System.out.println("1. Sensores libres");
         System.out.println("2. Registrar parqueo de vehiculo");
         System.out.println("3. Registrar parqueo de vehiculo con valor comercial");
         System.out.println("4. Listar información de vehiculos que se encuentran parqueados");
         System.out.println("5. Muestra cantidad de vehiculos que se han parqueado");
-        System.out.println("6. Verificar si el espacio está ocupado");
+        System.out.println("6. Verificar si el espacio esta ocupado");
         System.out.println("7. Listar estado de sensores");
         int seleccion = entrada.nextInt();
         int pisoDeseado, lugarDeseado;
@@ -34,28 +35,31 @@ public class Principal {
                 System.out.println(Sensor.sensorLibre());
                 break;
             case 2:
-                System.out.println("Ingrese en qué piso y espacio desea parquearse: ");
-                pisoDeseado = entrada.nextInt();
-                lugarDeseado = entrada.nextInt();
-                if (Sensor.sensores[pisoDeseado][lugarDeseado] != null) {
-                    if (Sensor.sensores[pisoDeseado][lugarDeseado].getEstado() == 0) {
-                        System.out.println("Ingrese la placa,marca y color separado por un espacio");
-                        String placa = entrada.next();
-                        String marca = entrada.next();
-                        String color = entrada.next();
-                        Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Vehiculo(placa, marca, color);
+                System.out.println("Ingrese en que piso y espacio desea parquearse: ");
+                pisoDeseado = entrada.nextInt()-1;
+                lugarDeseado = entrada.nextInt()-1;
+                // Primero, verificar que la cantidad de vehiculos actual sea menor a el tamaño permitido de vehiculos totales.
+                if(Vehiculo.cantidad<Vehiculo.tamano){
+                    if(Sensor.sensores[pisoDeseado][lugarDeseado].getEstado()==0){
+                        System.out.println("Por favor ingresar placa,marca y color separados por espacios");
+                        String placa= entrada.next();
+                        String marca= entrada.next();
+                        String color= entrada.next();
+                        Vehiculo.vehiculos[pisoDeseado][lugarDeseado]= new Vehiculo(placa,marca,color);
                         Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(1);
                         System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado]);
-
-                    } else {
-                        System.out.println("Esta ocupado mijo :(");
                     }
-                } else {
-                    System.out.println("Este lugar no existe");
+                    else{
+                        System.out.println("Esta ocupado");
+                    }
                 }
+                else{
+                    System.out.println("Esta lleno");
+                }
+    
                 break;
             case 3:
-                System.out.println("Ingrese en qué piso y espacio desea parquearse: ");
+                System.out.println("Ingrese en que piso y espacio desea parquearse: ");
                 pisoDeseado = entrada.nextInt();
                 lugarDeseado = entrada.nextInt();
                 if (Sensor.sensores[pisoDeseado][lugarDeseado] != null) {
@@ -101,6 +105,8 @@ public class Principal {
                 break;
             }
             System.out.println("Escriba una opcion: ");
+            System.out.println("0. Salir del sistema");
+            System.out.println("1. Sensores libres");
             System.out.println("1. Sensores libres");
             System.out.println("2. Registrar parqueo de vehiculo");
             System.out.println("3. Registrar parqueo de vehiculo con valor comercial");
