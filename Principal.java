@@ -39,6 +39,7 @@ public class Principal {
                 pisoDeseado = entrada.nextInt()-1;
                 lugarDeseado = entrada.nextInt()-1;
                 // Primero, verificar que la cantidad de vehiculos actual sea menor a el tamaño permitido de vehiculos totales.
+                //probando esto.
                 if(Vehiculo.cantidad<Vehiculo.tamano){
                     if(Sensor.sensores[pisoDeseado][lugarDeseado].getEstado()==0){
                         System.out.println("Por favor ingresar placa,marca y color separados por espacios");
