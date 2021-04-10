@@ -86,12 +86,12 @@ public class Principal {
                 System.out.println(Vehiculo.toStringVehiculos());
                 break;
             case 5:
-                System.out.println(Vehiculo.cantidad);
+                System.out.println("Hay "+Vehiculo.cantidad+" vehiculos parqueados");
                 break;
             case 6:
                 System.out.println("Ingrese en que piso y espacio desea parquearse: ");
-                pisoDeseado = entrada.nextInt();
-                lugarDeseado = entrada.nextInt();
+                pisoDeseado = entrada.nextInt()-1;
+                lugarDeseado = entrada.nextInt()-1;
                 if (Sensor.sensores[pisoDeseado][lugarDeseado] != null) {
                     System.out.println(Sensor.sensores[pisoDeseado][lugarDeseado].toString());
                 } else {
@@ -107,7 +107,6 @@ public class Principal {
             }
             System.out.println("Escriba una opcion: ");
             System.out.println("0. Salir del sistema");
-            System.out.println("1. Sensores libres");
             System.out.println("1. Sensores libres");
             System.out.println("2. Registrar parqueo de vehiculo");
             System.out.println("3. Registrar parqueo de vehiculo con valor comercial");
