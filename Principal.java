@@ -26,6 +26,7 @@ public class Principal {
         System.out.println("5. Muestra cantidad de vehiculos que se han parqueado");
         System.out.println("6. Verificar si el espacio esta ocupado");
         System.out.println("7. Listar estado de sensores");
+        System.out.println("8. Filtrar por color");
         int seleccion = entrada.nextInt();
         int pisoDeseado, lugarDeseado;
         while (seleccion != 0) {
@@ -101,6 +102,11 @@ public class Principal {
             case 7:
                 System.out.println(Sensor.sensoresEstado());
                 break;
+            case 8:
+            System.out.println("Ingrese el color deseado");
+            String color_deseado= entrada.next();
+                System.out.println(Vehiculo.filtroColor(color_deseado));
+                break;    
             default:
                 System.out.println("Comando incorrecto");
                 break;
@@ -114,6 +120,7 @@ public class Principal {
             System.out.println("5. Muestra cantidad de vehiculos que se han parqueado");
             System.out.println("6. Verificar si el espacio está ocupado");
             System.out.println("7. Listar estado de sensores");
+            System.out.println("8. Filtrar por color");
             seleccion=entrada.nextInt();
         }
         System.out.println("Saliendo...");

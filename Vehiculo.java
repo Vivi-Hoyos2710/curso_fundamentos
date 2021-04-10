@@ -74,4 +74,15 @@ public class Vehiculo {
   public static int cantidadVehiculos() {
     return cantidad;
   }
+  public static String filtroColor(String x){
+  String Carro="";
+  for(int i=0;i<vehiculos.length;i++){
+    for(int j=0;j<vehiculos[i].length;j++){
+      if((vehiculos[i][j]!=null)&&(vehiculos[i][j].color.equalsIgnoreCase(x))){
+       Carro += vehiculos[i][j].toString()+" piso "+i+" espacio "+j+"\n";   
+      }
+    }
+    }
+    return Carro;
+  }
 }
