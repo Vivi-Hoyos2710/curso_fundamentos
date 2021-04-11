@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Principal {
@@ -106,7 +107,11 @@ public class Principal {
             System.out.println("Ingrese el color deseado");
             String color_deseado= entrada.next();
                 System.out.println(Vehiculo.filtroColor(color_deseado));
-                break;    
+                break; 
+            case 9:
+            for(int i=0;i<Vehiculo.Ordenar().length;i++){
+              System.out.println(Vehiculo.Ordenar()[i].toString());  
+            }
             default:
                 System.out.println("Comando incorrecto");
                 break;

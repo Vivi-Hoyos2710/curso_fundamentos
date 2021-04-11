@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Vehiculo {
   public static Vehiculo[][] vehiculos;
   public static int tamano;
@@ -85,4 +86,31 @@ public class Vehiculo {
     }
     return Carro;
   }
+  
+  public static int Comparador(Vehiculo v1, Vehiculo v2){
+  if(v1.valorComercial>v2.valorComercial){
+    return 1;
+    }    
+  else if(v1.valorComercial<v2.valorComercial){
+    return -1;
+    }
+  else{
+      return 0;
+    }  
+  }
+  
+  public static Vehiculo[] Ordenar(){
+    Vehiculo PD[] = new Vehiculo [vehiculos.length*vehiculos[0].length];
+    int a=0;
+    for(int i=0;i<vehiculos.length;i++){
+        for(int j=0;j<vehiculos[i].length;j++){
+        if(vehiculos[i][j]!=null){
+          PD[a]=vehiculos[i][j];
+          a++;
+        }    
+      }  
+     }
+    Arrays.sort(PD,(v1,v2)->Vehiculo.Comparador (v1,v2));
+    return PD;
+    }
 }
