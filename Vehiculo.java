@@ -100,7 +100,7 @@ public class Vehiculo {
   }
   
   public static Vehiculo[] Ordenar(){
-    Vehiculo PD[] = new Vehiculo [vehiculos.length*vehiculos[0].length];
+    Vehiculo PD[] = new Vehiculo [Vehiculo.cantidadVehiculos()];
     int a=0;
     for(int i=0;i<vehiculos.length;i++){
         for(int j=0;j<vehiculos[i].length;j++){
