@@ -39,8 +39,8 @@ public class Principal {
                 break;
             case 2:
                 System.out.println("Ingrese en que piso y espacio desea parquearse: ");
-                pisoDeseado = entrada.nextInt();
-                lugarDeseado = entrada.nextInt();
+                pisoDeseado = entrada.nextInt()-1;
+                lugarDeseado = entrada.nextInt()-1;
                 // Primero, verificar que la cantidad de vehiculos actual sea menor a el tamaño permitido de vehiculos totales.
                 //probando esto.
                 if((0<=pisoDeseado) && (0<=lugarDeseado) && (pisoDeseado<cantidadPisos) && (lugarDeseado<cantidadEspacios)){
@@ -71,8 +71,8 @@ public class Principal {
                 break;
             case 3:
                 System.out.println("Ingrese en que piso y espacio desea parquearse: ");
-                pisoDeseado = entrada.nextInt();
-                lugarDeseado = entrada.nextInt();
+                pisoDeseado = entrada.nextInt()-1;
+                lugarDeseado = entrada.nextInt()-1;
                 if ((0<=pisoDeseado) && (0<=lugarDeseado) && (pisoDeseado<cantidadPisos) && (lugarDeseado<cantidadEspacios)) {
                     if (Sensor.sensores[pisoDeseado][lugarDeseado].getEstado() == 0) {
                         System.out.println("Ingrese la placa,marca y color separado por un espacio");
@@ -100,8 +100,8 @@ public class Principal {
                 break;
             case 6:
                 System.out.println("Ingrese en que piso y espacio desea parquearse: ");
-                pisoDeseado = entrada.nextInt();
-                lugarDeseado = entrada.nextInt();
+                pisoDeseado = entrada.nextInt()-1;
+                lugarDeseado = entrada.nextInt()-1;
                 if ((0<=pisoDeseado) && (0<=lugarDeseado) && (pisoDeseado<cantidadPisos) && (lugarDeseado<cantidadEspacios)) {
                 if (Sensor.sensores[pisoDeseado][lugarDeseado] != null) {
                     System.out.println(Sensor.sensores[pisoDeseado][lugarDeseado].toString());
