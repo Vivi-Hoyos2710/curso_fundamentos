@@ -1,12 +1,10 @@
 ------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all he/she needs to know. The comments should usually include at least:
+Proyecto para la creación de un sitema de parqueaderos 
 ------------------------------------------------------------------------
 
-PROJECT TITLE:
+PROJECT TITLE: Parqueaderos
 PURPOSE OF PROJECT:
 VERSION or DATE:
 HOW TO START THIS PROJECT:
-AUTHORS:
+AUTHORS: Pablo Micolta López, Viviana Hoyos Sierra, Luis David Campuzano.
 USER INSTRUCTIONS:
