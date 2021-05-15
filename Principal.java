@@ -1,15 +1,20 @@
-
 import java.util.Scanner;
-
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
 public class Principal {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        int cantidadPisos, cantidadEspacios;
+        
+        int cantidadPisos, cantidadEspacios, precioCarros,precioMotos;
         // solicitando cantidad de pisos del edificio y cantidad de espacios
         System.out.println("Por favor ingrese la cantidad de pisos: ");
         cantidadPisos = entrada.nextInt();
         System.out.println("Por favor ingrese la cantidad de espacios: ");
         cantidadEspacios = entrada.nextInt();
+        System.out.println("Por favor ingrese la cantidad a cobrar a los carros: ");
+        precioCarros = entrada.nextInt();
+        System.out.println("Por favor ingrese la cantidad a cobrar a las motos: ");
+        precioMotos = entrada.nextInt();
         Vehiculo.vehiculos = new Vehiculo[cantidadPisos][cantidadEspacios];
         Sensor.sensores = new Sensor[cantidadPisos][cantidadEspacios];
         for (int i = 0; i < Sensor.sensores.length; i++) {
@@ -31,6 +36,7 @@ public class Principal {
         System.out.println("9. Ordenar por valor comercial");
         int seleccion = entrada.nextInt();
         int pisoDeseado, lugarDeseado;
+        String tipoVehiculos;
         while (seleccion != 0) {
 
             switch (seleccion) {
@@ -41,6 +47,8 @@ public class Principal {
                     System.out.println("Ingrese en que piso y espacio desea parquearse: ");
                     pisoDeseado = entrada.nextInt() - 1;
                     lugarDeseado = entrada.nextInt() - 1;
+                    System.out.println("Ingrese el tipo de vehiculo a parquear");
+                    tipoVehiculos= entrada.next();
                     // Primero, verificar que la cantidad de vehiculos actual sea menor a el tamaño
                     // permitido de vehiculos totales.
                     // probando esto.
@@ -52,9 +60,14 @@ public class Principal {
                                 String placa = entrada.next();
                                 String marca = entrada.next();
                                 String color = entrada.next();
-                                Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Vehiculo(placa, marca, color);
+                                if(tipoVehiculos.equalsIgnoreCase("Moto")){
+                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Moto(placa, marca, color,precioMotos);
+                                }else{
+                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Carro(placa, marca, color,precioCarros);
+                                }
+                                
                                 Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(1);
-                                System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado]);
+                                System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado]); 
                             } else {
                                 System.out.println("Esta ocupado");
                             }
@@ -72,6 +85,8 @@ public class Principal {
                     System.out.println("Ingrese en que piso y espacio desea parquearse: ");
                     pisoDeseado = entrada.nextInt() - 1;
                     lugarDeseado = entrada.nextInt() - 1;
+                    System.out.println("Ingrese el tipo de vehiculo a parquear");
+                    tipoVehiculos= entrada.next();
                     if ((0 <= pisoDeseado) && (0 <= lugarDeseado) && (pisoDeseado < cantidadPisos)
                             && (lugarDeseado < cantidadEspacios)) {
                         if (Vehiculo.cantidad < Vehiculo.tamano) {
@@ -82,8 +97,12 @@ public class Principal {
                                 String color = entrada.next();
                                 System.out.println("Ingrese el valor comercial del vehiculo: ");
                                 int valor = entrada.nextInt();
-                                Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Vehiculo(placa, marca, color,
-                                        valor);
+                                if(tipoVehiculos.equalsIgnoreCase("Moto")){
+                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Moto(placa, marca, color,valor,precioMotos);
+                                }else{
+                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Carro(placa, marca, color,valor,precioCarros);
+                                }
+                                
                                 Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(1);
                                 System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado].toString());
 
@@ -132,7 +151,22 @@ public class Principal {
                         System.out.println(Vehiculo.Ordenar()[i].toString());
                     }
                     break;
-                default:
+                case 10:
+                    System.out.println("Ingrese el espacio a desocupar");
+                    pisoDeseado = entrada.nextInt() - 1;
+                    lugarDeseado = entrada.nextInt() - 1;
+                    Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(0);
+                    int horaEntrada= Vehiculo.vehiculos[pisoDeseado][lugarDeseado].getFechaYHora().getHours();
+                    int minutosEntrada= Vehiculo.vehiculos[pisoDeseado][lugarDeseado].getFechaYHora().getMinutes();
+                    Date salida=new Date();
+                    //int diaSalida = salida.getDay(); 
+                    int horaSalida= salida.getHours();
+                    int minutoSalida= salida.getMinutes();
+                    System.out.println(minutoSalida);
+                    double precioApagar=((horaSalida-horaEntrada)+(minutoSalida-minutosEntrada)/60)*Vehiculo.vehiculos[pisoDeseado][lugarDeseado].getPrecioDeParqueo();
+                    System.out.println("Valor a pagar: "+ (precioApagar));
+                    break;
+                 default:        
                     System.out.println("Comando incorrecto");
                     break;
             }

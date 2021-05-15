@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 public class Vehiculo {
   public static Vehiculo[][] vehiculos;
   public static int tamano;
@@ -6,8 +8,9 @@ public class Vehiculo {
   private String placa;
   private String marca;
   private String color;
+  private Date fechaYHora;
   private int valorComercial;
-
+  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy/HH:mm");  
   public Vehiculo() {
   }
 
@@ -15,7 +18,9 @@ public class Vehiculo {
     this.placa = p;
     this.marca = m;
     this.color = c;
-    this.valorComercial = v;
+    this.valorComercial = v; 
+    fechaYHora=new Date();
+    
     cantidad++;
   }
 
@@ -38,7 +43,7 @@ public class Vehiculo {
   public void setValorComercial(int valor) {
     this.valorComercial = valor;
   }
-
+  
   public String getPlaca() {
     return this.placa;
   }
@@ -50,13 +55,29 @@ public class Vehiculo {
   public String getColor() {
     return this.color;
   }
-
+  
+  public String getFecha(){
+   return formato.format(this.fechaYHora);
+  }
+  
+  public Date getFechaYHora(){
+   return this.fechaYHora;
+  }
+  
   public int getValorComercial() {
     return this.valorComercial;
   }
-
+  
+  public String getTipo(){
+   return "Vehiculo"; 
+  }
+  
+  public int getPrecioDeParqueo() {
+    return 0;
+  }
+  
   public String toString(){
-    String info = "Marca: "+this.marca+" Placa: "+this.placa+" Color: "+this.color+" Precio: "+this.valorComercial;
+    String info = "Marca: "+this.marca+" Placa: "+this.placa+" Color: "+this.color+ " Tipo: "+this.getTipo()+" Precio: "+this.valorComercial+" Fecha: "+this.getFecha();
     return info;
   }
 
@@ -83,7 +104,7 @@ public class Vehiculo {
        Carro += vehiculos[i][j].toString()+" piso "+i+" espacio "+j+"\n";   
       }
     }
-    }
+  }
     return Carro;
   }
   
