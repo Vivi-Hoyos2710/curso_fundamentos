@@ -86,7 +86,7 @@ public abstract class Vehiculo {
     for (int i = 0; i < vehiculos.length; i++) {
       for (int j = 0; j < vehiculos[i].length; j++) {
         if (vehiculos[i][j] != null) {
-          info_de_todos += vehiculos[i][j].toString() + "piso " + i + " espacio " + j + "\n";
+          info_de_todos += vehiculos[i][j].toString() + " piso " + i + " espacio " + j + "\n";
         }
       }
     }
