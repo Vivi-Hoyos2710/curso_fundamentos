@@ -1,11 +1,12 @@
 import java.util.Scanner;
 import java.util.Date;
 import java.time.temporal.ChronoUnit;
+
 public class Principal {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        
-        int cantidadPisos, cantidadEspacios, precioCarros,precioMotos;
+
+        int cantidadPisos, cantidadEspacios, precioCarros, precioMotos;
         // solicitando cantidad de pisos del edificio y cantidad de espacios
         System.out.println("Por favor ingrese la cantidad de pisos: ");
         cantidadPisos = entrada.nextInt();
@@ -34,6 +35,8 @@ public class Principal {
         System.out.println("7. Listar estado de sensores");
         System.out.println("8. Filtrar por color");
         System.out.println("9. Ordenar por valor comercial");
+        System.out.println("10. Salir del parqueadero");
+        System.out.println("11. Exportar informacion de vehiculos");
         int seleccion = entrada.nextInt();
         int pisoDeseado, lugarDeseado;
         String tipoVehiculos;
@@ -48,7 +51,7 @@ public class Principal {
                     pisoDeseado = entrada.nextInt() - 1;
                     lugarDeseado = entrada.nextInt() - 1;
                     System.out.println("Ingrese el tipo de vehiculo a parquear");
-                    tipoVehiculos= entrada.next();
+                    tipoVehiculos = entrada.next();
                     // Primero, verificar que la cantidad de vehiculos actual sea menor a el tamaño
                     // permitido de vehiculos totales.
                     // probando esto.
@@ -60,14 +63,20 @@ public class Principal {
                                 String placa = entrada.next();
                                 String marca = entrada.next();
                                 String color = entrada.next();
-                                if(tipoVehiculos.equalsIgnoreCase("Moto")){
-                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Moto(placa, marca, color,precioMotos);
-                                }else{
-                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Carro(placa, marca, color,precioCarros);
+                                if (tipoVehiculos.equalsIgnoreCase("Moto")) {
+                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Moto(placa, marca, color,
+                                            precioMotos);
+                                    Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(1);
+                                    System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado]);
+                                } else if (tipoVehiculos.equalsIgnoreCase("Carro")) {
+                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Carro(placa, marca, color,
+                                            precioCarros);
+                                    Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(1);
+                                    System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado]);
+                                } else {
+                                    System.out.println("Invalido, su vehiculo no es aceptado en este parqueadero.");
                                 }
-                                
-                                Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(1);
-                                System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado]); 
+
                             } else {
                                 System.out.println("Esta ocupado");
                             }
@@ -86,7 +95,7 @@ public class Principal {
                     pisoDeseado = entrada.nextInt() - 1;
                     lugarDeseado = entrada.nextInt() - 1;
                     System.out.println("Ingrese el tipo de vehiculo a parquear");
-                    tipoVehiculos= entrada.next();
+                    tipoVehiculos = entrada.next();
                     if ((0 <= pisoDeseado) && (0 <= lugarDeseado) && (pisoDeseado < cantidadPisos)
                             && (lugarDeseado < cantidadEspacios)) {
                         if (Vehiculo.cantidad < Vehiculo.tamano) {
@@ -97,24 +106,27 @@ public class Principal {
                                 String color = entrada.next();
                                 System.out.println("Ingrese el valor comercial del vehiculo: ");
                                 int valor = entrada.nextInt();
-                                if(tipoVehiculos.equalsIgnoreCase("Moto")){
-                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Moto(placa, marca, color,valor,precioMotos);
-                                }else{
-                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Carro(placa, marca, color,valor,precioCarros);
+                                if (tipoVehiculos.equalsIgnoreCase("Moto")) {
+                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Moto(placa, marca, color, valor,
+                                            precioMotos);
+                                    Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(1);
+                                    System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado].toString());
+                                } else if (tipoVehiculos.equalsIgnoreCase("Carro")) {
+                                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = new Carro(placa, marca, color,
+                                            valor, precioCarros);
+                                    Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(1);
+                                    System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado].toString());
+                                } else {
+                                    System.out.println("Invalido, su vehiculo no es aceptado en este parqueadero.");
                                 }
-                                
-                                Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(1);
-                                System.out.println(Vehiculo.vehiculos[pisoDeseado][lugarDeseado].toString());
 
-                            }
-                            else{
+                            } else {
                                 System.out.println("Esta ocupado mijo");
                             }
-                        }
-                        else{
+                        } else {
                             System.out.println("Esta lleno");
-                        } 
-                    } else{
+                        }
+                    } else {
                         System.out.println("Este lugar no existe");
                     }
                     break;
@@ -156,17 +168,14 @@ public class Principal {
                     pisoDeseado = entrada.nextInt() - 1;
                     lugarDeseado = entrada.nextInt() - 1;
                     Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(0);
-                    int horaEntrada= Vehiculo.vehiculos[pisoDeseado][lugarDeseado].getFechaYHora().getHours();
-                    int minutosEntrada= Vehiculo.vehiculos[pisoDeseado][lugarDeseado].getFechaYHora().getMinutes();
-                    Date salida=new Date();
-                    //int diaSalida = salida.getDay(); 
-                    int horaSalida= salida.getHours();
-                    int minutoSalida= salida.getMinutes();
-                    System.out.println(minutoSalida);
-                    double precioApagar=((horaSalida-horaEntrada)+(minutoSalida-minutosEntrada)/60)*Vehiculo.vehiculos[pisoDeseado][lugarDeseado].getPrecioDeParqueo();
-                    System.out.println("Valor a pagar: "+ (precioApagar));
+                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado].sacarVehiculo();
+                    Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = null;
+
                     break;
-                 default:        
+                case 11:
+                    Persistencia.guardarVehiculos(Vehiculo.toStringVehiculos());
+                    break;
+                default:
                     System.out.println("Comando incorrecto");
                     break;
             }
@@ -181,6 +190,8 @@ public class Principal {
             System.out.println("7. Listar estado de sensores");
             System.out.println("8. Filtrar por color");
             System.out.println("9. Ordenar por valor comercial");
+            System.out.println("10. Salir del parqueadero");
+            System.out.println("11. Exportar informacion de vehiculos");
             seleccion = entrada.nextInt();
         }
         System.out.println("Saliendo...");
