@@ -1,5 +1,3 @@
-package MiniJuego;
-
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -8,9 +6,9 @@ public class Principal {
     public static void main(String[] args) {
         Bichos[][] tablero = new Bichos[2][2];
         int cantidadBichos = ThreadLocalRandom.current().nextInt(1, 5);// Numero aleatorio de 1 a 4 (la funcion toma el
-                                                                       // ultimo parametro como n máximo+1)
+        // ultimo parametro como n máximo+1)
         int tipoBicho = ThreadLocalRandom.current().nextInt(1, 3); // Lo mismo de arriba pero este se usa para sacar
-                                                                   // tipo de bicho aleatoriamente.
+        // tipo de bicho aleatoriamente.
         int contador = 0;
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[i].length; j++) {
@@ -29,49 +27,58 @@ public class Principal {
         String info3="";
         String info4="";
         if (tablero[0][0]==null) {
-            info1="     ";
+            info1="     "; //poniendo relleno en el espacio 1
         }
         else{
-            info1= tablero[0][0].toString();
+            info1= tablero[0][0].toString(); //guardando la posicion del espacio 1
         }
 
         if (tablero[0][1]==null) {
-            info2="     ";
+            info2="     ";//poniendo relleno en el espacio 2
         }
         else{
-            info2= tablero[0][1].toString();
+            info2= tablero[0][1].toString();//guardando la posicion del espacio 2
         }
 
         if (tablero[1][0]==null) {
-            info3="     ";
+            info3="     ";//poniendo relleno en el espacio 3
         }
         else{
-            info3= tablero[1][0].toString();
+            info3= tablero[1][0].toString();//guardando la posicion del espacio 3
         }
 
         if (tablero[1][1]==null) {
-            info3="     ";
+            info4="     ";//poniendo relleno en el espacio 4
         }
         else{
-            info3= tablero[1][1].toString();
+            info4= tablero[1][1].toString();//guardando la posicion del espacio 4
         }
         Scanner entrada = new Scanner(System.in);
-        int pistola = entrada.nextInt();
+        //imprimir el tablero
         System.out.println("-------------");
         System.out.println("|"+info1+"|"+info2+"|");
         System.out.println("-------------");
         System.out.println("|"+info3+"|"+info4+"|");
-         System.out.println("-------------");
+        System.out.println("-------------");
 
-        System.out.println("Seleccione el lugar a dispara");
+        System.out.println("Presiona un numero para empezar");
         int pistola = entrada.nextInt();
         while (true) {
-            System.out.println("-------------");
-            System.out.println("|"+info1+"|"+info2+"|");
-            System.out.println("-------------");
-            System.out.println("|"+info3+"|"+info4+"|");
-            System.out.println("-------------");
-            switch (pistola) {
+            contador = 0;
+            for (int i = 0; i < tablero.length; i++) { //Comprobando que haya Bichos vivos
+                for (int j = 0; j < tablero[i].length; j++) {
+                    if (tablero[i][j] != null) {
+                        contador++;
+                    }
+
+                }
+            }
+            if(contador==0){
+                break;
+            }
+            System.out.println("Selecciona la posicion a disparar");
+            pistola = entrada.nextInt();
+            switch (pistola) {//disparar al espacio respectivo
                 case 1:
                     if (tablero[0][0] != null) {
                         tablero[0][0].setSalud(tablero[0][0].getSalud() - 5);
@@ -109,19 +116,7 @@ public class Principal {
                     System.out.println("Posición inválida");
                     break;
             }
-            contador = 0;
-            for (int i = 0; i < tablero.length; i++) {
-                for (int j = 0; j < tablero[i].length; j++) {
-                    if (tablero[i][j] != null) {
-                        contador++;
-                    }
-
-                }
-            }
-            if(contador==0){
-                break;
-            }
-
+            //actualizando la informacion de cada espacio
             if (tablero[0][0]==null) {
                 info1="     ";
             }
@@ -144,16 +139,18 @@ public class Principal {
             }
 
             if (tablero[1][1]==null) {
-                info3="     ";
+                info4="     ";
             }
             else{
-                info3= tablero[1][1].toString();
+                info4= tablero[1][1].toString();
             }
+            //imprimir el tablero actualizado
             System.out.println("-------------");
             System.out.println("|"+info1+"|"+info2+"|");
             System.out.println("-------------");
             System.out.println("|"+info3+"|"+info4+"|");
             System.out.println("-------------");
+
         }
 
     }
