@@ -32,13 +32,45 @@ public class Principal {
             info1="     ";
         }
         else{
-            
+            info1= tablero[0][0].toString();
         }
-        
+
+        if (tablero[0][1]==null) {
+            info2="     ";
+        }
+        else{
+            info2= tablero[0][1].toString();
+        }
+
+        if (tablero[1][0]==null) {
+            info3="     ";
+        }
+        else{
+            info3= tablero[1][0].toString();
+        }
+
+        if (tablero[1][1]==null) {
+            info3="     ";
+        }
+        else{
+            info3= tablero[1][1].toString();
+        }
         Scanner entrada = new Scanner(System.in);
         int pistola = entrada.nextInt();
+        System.out.println("-------------");
+        System.out.println("|"+info1+"|"+info2+"|");
+        System.out.println("-------------");
+        System.out.println("|"+info3+"|"+info4+"|");
+         System.out.println("-------------");
 
+        System.out.println("Seleccione el lugar a dispara");
+        int pistola = entrada.nextInt();
         while (true) {
+            System.out.println("-------------");
+            System.out.println("|"+info1+"|"+info2+"|");
+            System.out.println("-------------");
+            System.out.println("|"+info3+"|"+info4+"|");
+            System.out.println("-------------");
             switch (pistola) {
                 case 1:
                     if (tablero[0][0] != null) {
@@ -89,6 +121,39 @@ public class Principal {
             if(contador==0){
                 break;
             }
+
+            if (tablero[0][0]==null) {
+                info1="     ";
+            }
+            else{
+                info1= tablero[0][0].toString();
+            }
+
+            if (tablero[0][1]==null) {
+                info2="     ";
+            }
+            else{
+                info2= tablero[0][1].toString();
+            }
+
+            if (tablero[1][0]==null) {
+                info3="     ";
+            }
+            else{
+                info3= tablero[1][0].toString();
+            }
+
+            if (tablero[1][1]==null) {
+                info3="     ";
+            }
+            else{
+                info3= tablero[1][1].toString();
+            }
+            System.out.println("-------------");
+            System.out.println("|"+info1+"|"+info2+"|");
+            System.out.println("-------------");
+            System.out.println("|"+info3+"|"+info4+"|");
+            System.out.println("-------------");
         }
 
     }
