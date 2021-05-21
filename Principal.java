@@ -170,6 +170,7 @@ public class Principal {
                     Sensor.sensores[pisoDeseado][lugarDeseado].setEstado(0);
                     Vehiculo.vehiculos[pisoDeseado][lugarDeseado].sacarVehiculo();
                     Vehiculo.vehiculos[pisoDeseado][lugarDeseado] = null;
+                    Vehiculo.cantidad-=1;
 
                     break;
                 case 11:
