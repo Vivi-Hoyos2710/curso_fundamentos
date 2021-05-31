@@ -11,7 +11,7 @@ public abstract class Vehiculo {
   private String color;
   private Date fechaYHora;
   private int valorComercial;
-  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy | HH:mm");
+  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy | HH:mm"); //Formato de fecha 
 
   public Vehiculo() {
   }
@@ -21,8 +21,7 @@ public abstract class Vehiculo {
     this.marca = m;
     this.color = c;
     this.valorComercial = v;
-    fechaYHora = new Date();
-
+    fechaYHora = new Date(); // Se crea una instancia de clase Date para guardar la fecha y hora de ingreso.
     cantidad++;
   }
 
@@ -59,18 +58,18 @@ public abstract class Vehiculo {
   }
 
   public String getFecha() {
-    return formato.format(this.fechaYHora);
+    return formato.format(this.fechaYHora); // String (En formato)
   }
 
   public Date getFechaYHora() {
-    return this.fechaYHora;
+    return this.fechaYHora; //de clase Date
   }
 
   public int getValorComercial() {
     return this.valorComercial;
   }
 
-  abstract String getTipo();
+  abstract String getTipo(); 
 
   abstract int getPrecioDeParqueo();
   
